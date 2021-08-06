@@ -22,11 +22,11 @@ class Char_Deff(models.Model):
 
 
 class Word(models.Model):
-    text = models.CharField(max_length=3)
+    symbols = models.CharField(max_length=3)
     rank = models.IntegerField(default = 0)
 
     def __str__(self):
-        return self.text
+        return self.symbols
 
 
 class Word_Deff(models.Model):
