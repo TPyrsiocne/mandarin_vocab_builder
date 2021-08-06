@@ -18,16 +18,15 @@ class Char_Deff(models.Model):
     ordinal = models.IntegerField(default = 0)
 
     def __str__(self):
-        return definition[:20] + "..."
+        return self.definition[:40] + "..."
 
 
 class Word(models.Model):
     text = models.CharField(max_length=3)
-    definition = models.CharField(max_length = 1000)
     rank = models.IntegerField(default = 0)
 
     def __str__(self):
-        return text
+        return self.text
 
 
 class Word_Deff(models.Model):
@@ -38,4 +37,4 @@ class Word_Deff(models.Model):
     ordinal = models.IntegerField(default = 0)
 
     def __str__(self):
-        return definition[:20] + "..."
+        return self.definition[:40] + "..."
