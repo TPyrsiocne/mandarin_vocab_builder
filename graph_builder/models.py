@@ -5,6 +5,9 @@ class Character(models.Model):
     symbol = models.CharField(max_length = 1)
     rank = models.IntegerField(default = 0)
 
+    def __str__(self):
+        return self.symbol
+
 
 #definition formating to be decided
 class Char_Deff(models.Model):
@@ -14,11 +17,17 @@ class Char_Deff(models.Model):
     #ordinal ranks deffintions from first to last
     ordinal = models.IntegerField(default = 0)
 
+    def __str__(self):
+        return definition[:20] + "..."
+
 
 class Word(models.Model):
     text = models.CharField(max_length=3)
     definition = models.CharField(max_length = 1000)
     rank = models.IntegerField(default = 0)
+
+    def __str__(self):
+        return text
 
 
 class Word_Deff(models.Model):
@@ -27,3 +36,6 @@ class Word_Deff(models.Model):
     pronunciation = models.CharField(max_length = 40)
     # ordinal ranks deffintions from first to last
     ordinal = models.IntegerField(default = 0)
+
+    def __str__(self):
+        return definition[:20] + "..."
