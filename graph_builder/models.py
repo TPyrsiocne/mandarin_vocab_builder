@@ -9,7 +9,14 @@ class Character(models.Model):
         return self.symbol
 
 
-#definition formating to be decided
+"""
+Look into the idea of a get_next_ordinal method? 
+(coudl apply to Word_Deff too)
+
+What about having the *_Deff objects be 
+extensions of a single class?
+"""
+
 class Char_Deff(models.Model):
     character = models.ForeignKey(Character, on_delete = models.CASCADE)
     definition = models.CharField(max_length = 1000)
