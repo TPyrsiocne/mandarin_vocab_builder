@@ -1,13 +1,16 @@
 from graph_builder.models import Character, Word, Char_Deff, Word_Deff
 
-# this probably dosen't work the way I think it does. It might depend on the location where script is run
-PATH_TO_CHARDICT = "../char_dict.txt"
+""" 
+it seemed that that PATH_TOCHARDICT was being interpereted relative to wherever the
+~% python manage.py shell < scripts/populate_tables.py 
+command was run. fixed this by including entire file path
+"""
+PATH_TO_CHARDICT = "/Users/tysonprice/mandarin_vocab_builder/char_dict.txt"
 
 
 #clear dictionary of characters and their deffinitions
 Character.objects.all().delete()
 Char_Deff.objects.all().delete()
-
 
 
 for line in open(PATH_TO_CHARDICT, "r").readlines()[:3000]:
