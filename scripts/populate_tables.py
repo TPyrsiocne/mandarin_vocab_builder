@@ -1,7 +1,7 @@
 from graph_builder.models import Character, Word, Char_Deff, Word_Deff
 
 """ 
-it seemed that that PATH_TOCHARDICT was being interpereted relative to wherever the
+PATH_TOCHARDICT was being interpereted relative to wherever
 ~% python manage.py shell < scripts/populate_tables.py 
 command was run. fixed this by including entire file path
 """
@@ -26,7 +26,7 @@ for line in open(PATH_TO_CHARDICT, "r").readlines()[:3000]:
         
         all tokens are strings, mutiple deffinitions and pronuncations are deliomited by '/'. 
         """
-        new_char = Character(symbol = tokens[1], rank = tokens[0])
+        new_char = Character(symbol = tokens[1], rank = int(tokens[0]))
         new_char_deff = Char_Deff(character = new_char, definition= tokens[5], pronunciation= tokens[4], ordinal = 1)
         new_char.save()
         new_char_deff.save()
