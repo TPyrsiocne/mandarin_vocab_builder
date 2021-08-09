@@ -6,16 +6,16 @@ def index(request):
 
 def graph_build(request, char):
     char_deff = Char_Deff.objects.get(character__symbol = char)
-    starts_with_list = Word.objects.filter(symbols__startswith = char)
-    ends_with_list = Word.objects.filter(symbols__endswith = char)
+    char_inital_words = Word.objects.filter(symbols__startswith = char)
+    char_final_words = Word.objects.filter(symbols__endswith = char)
 
 
     a = ""
-    for i in starts_with_list:
+    for i in char_inital_words:
         a = a + "----> " + i.symbols[1] + "<br>"
 
     b = ""
-    for i in ends_with_list:
+    for i in char_final_words:
         b = b + "<br>" + i.symbols[0] + " ----> "
 
     return HttpResponse(char + "<br><br>" + char_deff.pronunciation + "<br>" + char_deff.definition +
