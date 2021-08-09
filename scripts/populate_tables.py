@@ -9,11 +9,10 @@ PATH_TO_CHARDICT = "/Users/tysonprice/mandarin_vocab_builder/char_dict.txt"
 PATH_TO_WORDDICT = "/Users/tysonprice/mandarin_vocab_builder/word_dict.txt"
 
 
-#clear dictionary of characters and their deffinitions
+#clear tabels of characters and their deffinitions
 Character.objects.all().delete()
 Char_Deff.objects.all().delete()
-
-
+#import and populate
 for line in open(PATH_TO_CHARDICT, "r").readlines()[:3000]:
     if line[0].isnumeric():
         tokens = line.split("\t")
@@ -32,9 +31,10 @@ for line in open(PATH_TO_CHARDICT, "r").readlines()[:3000]:
         new_char.save()
         new_char_deff.save()
 
+#clear tabels of words and their deffinitions
 Word.objects.all().delete()
 Word_Deff.objects.all().delete()
-
+#import and popluate
 for line in open(PATH_TO_WORDDICT, "r").readlines()[:3000]:
     if line[0].isnumeric():
         tokens = line.split("\t")
