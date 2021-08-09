@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{char}}</title>
+</head>
+<body>
+<h1>{{char}}<br></h1>
+{{char_deff.pronunciation}}<br>
+{{char_deff.definition}}<br><br>
+
+
+</body>
+LINKS FROM CHAR<br>
+{% for word in char_initial_words %}
+--> {{word.symbols.1}}<br>
+{% endfor %}
+<br><br>
+
+LINKS TO CHAR<br>
+{% for word in char_final_words %}
+{{word.symbols.0}} --><br>
+{% endfor %}
+
+</html>
