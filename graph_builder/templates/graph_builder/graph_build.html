@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+    a { text-decoration: none; }
+    </style>
     <meta charset="UTF-8">
     <title>{{char}}</title>
 </head>
 <body>
-<h1>{{char}}<br></h1>
+<h1 style="font-size:50px;">{{char}}</h1>
 {{char_deff.pronunciation}}<br>
 {{char_deff.definition}}<br><br>
 
@@ -13,13 +16,13 @@
 </body>
 LINKS FROM CHAR<br>
 {% for word in char_initial_words %}
---> {{word.symbols.1}}<br>
+--> <a href = "/mandarin-graph/{{word.symbols.1}}/">{{word.symbols.1}}</a><br>
 {% endfor %}
 <br><br>
 
 LINKS TO CHAR<br>
 {% for word in char_final_words %}
-{{word.symbols.0}} --><br>
+<a href = "/mandarin-graph/{{word.symbols.0}}/">{{word.symbols.0}}</a> --><br>
 {% endfor %}
 
 </html>
