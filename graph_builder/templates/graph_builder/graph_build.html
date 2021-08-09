@@ -5,24 +5,24 @@
     a { text-decoration: none; }
     </style>
     <meta charset="UTF-8">
-    <title>{{char}}</title>
+    <title>{{this_char.symbol}} - {{this_char.rank}}</title>
 </head>
 <body>
-<h1 style="font-size:50px;">{{char}}</h1>
-{{char_deff.pronunciation}}<br>
-{{char_deff.definition}}<br><br>
+<h1 style="font-size:50px;">{{this_char.symbol}}</h1>
+{{this_char_deff.pronunciation}}<br>
+{{this_char_deff.definition}}<br><br>
 
 
 </body>
 LINKS FROM CHAR<br>
-{% for word in char_initial_words %}
---> <a href = "/mandarin-graph/{{word.symbols.1}}/">{{word.symbols.1}}</a><br>
+{% for ender in word_enders %}
+--> <a href = "/mandarin-graph/{{ender.symbol}}/">{{ender.symbol}}</a><br>
 {% endfor %}
 <br><br>
 
 LINKS TO CHAR<br>
-{% for word in char_final_words %}
-<a href = "/mandarin-graph/{{word.symbols.0}}/">{{word.symbols.0}}</a> --><br>
+{% for starter in word_starters %}
+<a href = "/mandarin-graph/{{starter.symbol}}/">{{starter.symbol}}</a> --><br>
 {% endfor %}
 
 </html>
