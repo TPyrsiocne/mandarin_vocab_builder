@@ -5,8 +5,10 @@ def index(request):
     return HttpResponse("Hello, world. You're at the index.")
 
 def graph_build(request, char):
+    char_deff = Char_Deff.objects.get(character__symbol = char)
     starts_with_list = Word.objects.filter(symbols__startswith = char)
     ends_with_list = Word.objects.filter(symbols__endswith = char)
+
 
     a = ""
     for i in starts_with_list:
@@ -16,7 +18,8 @@ def graph_build(request, char):
     for i in ends_with_list:
         b = b + "<br>" + i.symbols[0] + " ----> "
 
-    return HttpResponse("LINKS STARTING WITH<br>"+ char + a +"<br><br> LINKS ENDING WITH" + b +char)
+    return HttpResponse(char + "<br><br>" + char_deff.pronunciation + "<br>" + char_deff.definition +
+                        "<br><br><br>"+"LINKS FROM<br>"+ char + a +"<br><br> LINKS TO" + b +char)
 
 
 """
