@@ -6,10 +6,15 @@ def index(request):
 
 def graph_build(request, char):
     char_deff = Char_Deff.objects.get(character__symbol = char)
+    """
+      how do I sort QuerySets bassed on the other chars' rank?
+      how to filter words by rank
+    """
     char_inital_words = Word.objects.filter(symbols__startswith = char)
     char_final_words = Word.objects.filter(symbols__endswith = char)
 
 
+    """ the folowing formating will be later done with a template"""
     a = ""
     for i in char_inital_words:
         a = a + "----> " + i.symbols[1] + "<br>"
