@@ -41,18 +41,18 @@ def graph_build(request, char):
         starter = Character.objects.filter(symbol=word.symbols[0])
         if starter.count() > 1:
             print("WARNING: " + starter.first().symbol + "has multiple entries in characters table")
-        starter = starter.first()
-        if starter.rank <= rank_limit:
-            word_starters.append(starter)
+
+        if starter.count()>0 and starter.first().rank <= rank_limit:
+            word_starters.append(starter.first())
 
     word_enders = []
     for word in char_initial_words:
         ender = Character.objects.filter(symbol=word.symbols[1])
         if ender.count() > 1:
             print("WARNING: " + ender.first().symbol + "has multiple entries in characters table")
-        ender = ender.first()
-        if ender.rank <= rank_limit:
-            word_enders.append(ender)
+
+        if ender.count()>0 and ender.first().rank <= rank_limit:
+            word_enders.append(ender.first())
 
 
     context = {
