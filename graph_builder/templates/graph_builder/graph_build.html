@@ -15,13 +15,13 @@
 
 </body>
 <br>
-LINKS FROM CHAR<br>
+LINKS TO CHAR<br>
 {% for ender in word_enders %}
 --> <a href = "/mandarin-graph/{{ender.symbol}}/">{{ender.symbol}} </a><sub>{{ender.rank}}</sub><br>
 {% endfor %}
 <br><br>
 
-LINKS TO CHAR<br>
+LINKS FROM CHAR<br>
 {% for starter in word_starters %}
 <a href = "/mandarin-graph/{{starter.symbol}}/">{{starter.symbol}} </a><sub>{{starter.rank}}</sub> --><br>
 {% endfor %}

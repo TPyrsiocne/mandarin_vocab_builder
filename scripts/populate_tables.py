@@ -31,6 +31,15 @@ for line in open(PATH_TO_CHARDICT, "r").readlines()[:3000]:
         new_char.save()
         new_char_deff.save()
 
+#check for duplicates : this code is inefficient and dobule/triple/etc. prints; can be improved
+for char in Character.objects.all():
+    multiplicity = Character.objects.filter(symbol = char.symbol).count()
+    if multiplicity > 1:
+        print("WARNING: " + char.symbol + "is duplicated " + str(multiplicity) +" times")
+
+
+
+
 #clear tabels of words and their deffinitions
 Word.objects.all().delete()
 Word_Deff.objects.all().delete()
