@@ -13,7 +13,7 @@ PATH_TO_WORDDICT = "/Users/tysonprice/mandarin_vocab_builder/word_dict.txt"
 Character.objects.all().delete()
 Char_Deff.objects.all().delete()
 #import and populate
-for line in open(PATH_TO_CHARDICT, "r").readlines()[:3000]:
+for line in open(PATH_TO_CHARDICT, "r").readlines()[:4000]:
     if line[0].isnumeric():
         tokens = line.split("\t")
         """

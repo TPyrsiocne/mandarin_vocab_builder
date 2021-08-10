@@ -5,6 +5,9 @@ def index(request):
     return HttpResponse("Hello, world. You're at the index.")
 
 def graph_build(request, char):
+
+
+    """if each character symbol only has one entry these eroor messages should not be tripped"""
     this_char = Character.objects.filter(symbol = char)
     if this_char.count()>1:
         print("WARNING: " + this_char.first().symbol + "has multiple entries in characters table")
@@ -29,14 +32,13 @@ def graph_build(request, char):
 
     """
     there might be a better way to do this using filter
-
     """
     rank_limit = this_char.rank
     word_starters = []
     for word in char_final_words:
         starter = Character.objects.filter(symbol=word.symbols[0])
         if starter.count() > 1:
-            print("WARNING: " + starter.first().symbols + "has multiple entries in characters table")
+            print("WARNING: " + starter.first().symbol + "has multiple entries in characters table")
         starter = starter.first()
         if starter.rank <= rank_limit:
             word_starters.append(starter)
@@ -45,7 +47,7 @@ def graph_build(request, char):
     for word in char_initial_words:
         ender = Character.objects.filter(symbol=word.symbols[1])
         if ender.count() > 1:
-            print("WARNING: " + ender.first().symbols + "has multiple entries in characters table")
+            print("WARNING: " + ender.first().symbol + "has multiple entries in characters table")
         ender = ender.first()
         if ender.rank <= rank_limit:
             word_enders.append(ender)
