@@ -1,10 +1,4 @@
 from graph_builder.models import Character, Word, Char_Deff, Word_Deff
-
-""" 
-PATH_TOCHARDICT was being interpereted relative to wherever
-~% python manage.py shell < scripts/populate_tables.py 
-command was run. fixed this by including entire file path
-"""
 PATH_TO_CHARDICT = "/Users/tysonprice/mandarin_vocab_builder/char_dict.txt"
 PATH_TO_WORDDICT = "/Users/tysonprice/mandarin_vocab_builder/word_dict.txt"
 
@@ -31,12 +25,13 @@ for line in open(PATH_TO_CHARDICT, "r").readlines()[:4000]:
         new_char.save()
         new_char_deff.save()
 
+"""
 #check for duplicates : this code is inefficient and dobule/triple/etc. prints; can be improved
 for char in Character.objects.all():
     multiplicity = Character.objects.filter(symbol = char.symbol).count()
     if multiplicity > 1:
         print("WARNING: " + char.symbol + "is duplicated " + str(multiplicity) +" times")
-
+"""
 
 
 
@@ -44,7 +39,7 @@ for char in Character.objects.all():
 Word.objects.all().delete()
 Word_Deff.objects.all().delete()
 #import and popluate
-for line in open(PATH_TO_WORDDICT, "r").readlines()[:3000]:
+for line in open(PATH_TO_WORDDICT, "r").readlines()[:10000]:
     if line[0].isnumeric():
         tokens = line.split("\t")
         """
