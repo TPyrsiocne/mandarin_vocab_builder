@@ -1,5 +1,7 @@
+import random
 from django.shortcuts import render
 from graph_builder.models import Word, Character, Char_Deff
+
 
 def index(request):
     return HttpResponse("Hello, world. You're at the index.")
@@ -56,7 +58,10 @@ def graph_build(request, char):
         'this_char_deff' : this_char_deff,
         'word_starters' : word_starters,
         'word_enders' : word_enders,
-        'next' : this_char.rank + 1,
+
+
+        'next' : this_char.rank + 1,#is it possible to incriment/decrement value in template?
+        'random' : random.choice(range(2000)) + 1,
         'previous' : max(this_char.rank - 1,1),
         }
     return render(request, "graph_builder/graph_build.html", context)
