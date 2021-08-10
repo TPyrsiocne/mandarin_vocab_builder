@@ -7,23 +7,31 @@
     <meta charset="UTF-8">
     <title>{{this_char.symbol}} - {{this_char.rank}}  </title>
 </head>
-<body>
-<h1 style="font-size:50px;">{{this_char.symbol}}</h1>
-{{this_char_deff.pronunciation}}<br>
-{{this_char_deff.definition}}<br><br>
 
+<a href = "/mandarin-graph/{{previous}}/"> &ltprevious </a>
+<a href = "/mandarin-graph/{{next}}/"> next&gt </a>
+
+<body>
+<h1 style="font-size:50px;">{{this_char.symbol}}<sub><font size = "-2">{{this_char.rank}}</font></sub></h1>
+{{this_char_deff.pronunciation}}<br>
+{{this_char_deff.definition}}<br>
+
+
+<br><br>
 
 </body>
 <br>
 LINKS TO CHAR<br>
 {% for ender in word_enders %}
---> <a href = "/mandarin-graph/{{ender.symbol}}/">{{ender.symbol}} </a><sub>{{ender.rank}}</sub><br>
+<a href = "https://www.purpleculture.net/dictionary-details/?word={{this_char.symbol}}{{ender.symbol}}" target="_blank">--></a>
+<a href = "/mandarin-graph/{{ender.symbol}}/">{{ender.symbol}} </a><sub>{{ender.rank}}</sub><br>
 {% endfor %}
 <br><br>
 
 LINKS FROM CHAR<br>
 {% for starter in word_starters %}
-<a href = "/mandarin-graph/{{starter.symbol}}/">{{starter.symbol}} </a><sub>{{starter.rank}}</sub> --><br>
+<a href = "/mandarin-graph/{{starter.symbol}}/">{{starter.symbol}} </a><sub>{{starter.rank}}</sub>
+<a href = "https://www.purpleculture.net/dictionary-details/?word={{starter.symbol}}{{this_char.symbol}}" target="_blank">--></a><br>
 {% endfor %}
 
 </html>

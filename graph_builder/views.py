@@ -19,10 +19,6 @@ def graph_build(request, char):
         print("WARNING: " + this_char_deff.first().character.symbol + "has multiple entries in characters table")
     this_char_deff = this_char_deff.first()
 
-
-
-
-
     """
       how do I sort QuerySets bassed on the other chars' rank?
       how to filter words by rank
@@ -60,6 +56,8 @@ def graph_build(request, char):
         'this_char_deff' : this_char_deff,
         'word_starters' : word_starters,
         'word_enders' : word_enders,
+        'next' : this_char.rank + 1,
+        'previous' : max(this_char.rank - 1,1),
         }
     return render(request, "graph_builder/graph_build.html", context)
 
