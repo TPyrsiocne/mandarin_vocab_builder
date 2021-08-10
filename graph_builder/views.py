@@ -6,9 +6,9 @@ def index(request):
 
 def graph_build(request, char):
 
-
-    """if each character symbol only has one entry these eroor messages should not be tripped"""
     this_char = Character.objects.filter(symbol = char)
+    """if each character symbol only has one entry these error messages should not be tripped
+        maybe dictionary should be better sanitizied"""
     if this_char.count()>1:
         print("WARNING: " + this_char.first().symbol + "has multiple entries in characters table")
     this_char = this_char.first()
@@ -18,6 +18,8 @@ def graph_build(request, char):
     if this_char_deff.count()>1:
         print("WARNING: " + this_char_deff.first().character.symbol + "has multiple entries in characters table")
     this_char_deff = this_char_deff.first()
+
+
 
 
 
@@ -69,3 +71,8 @@ which would be linked to when you click an edege.
 
 another idea would be to have defintions be mosueover text or seomthing
 """
+
+
+def graph_build_from_rank(request, char_rank):
+    char = Character.objects.get(rank = char_rank).symbol
+    return graph_build(request = request, char = char)
