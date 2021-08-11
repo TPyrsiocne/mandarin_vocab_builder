@@ -4,7 +4,9 @@ from graph_builder.models import Word, Character, Char_Deff
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the index.")
+    context = {"characters" : Character.objects.all()}
+
+    return render(request, "graph_builder/index.html", context)
 
 def graph_build(request, char):
 

@@ -39,7 +39,7 @@ for char in Character.objects.all():
 Word.objects.all().delete()
 Word_Deff.objects.all().delete()
 #import and popluate
-for line in open(PATH_TO_WORDDICT, "r").readlines()[:10000]:
+for line in open(PATH_TO_WORDDICT, "r").readlines()[:20000]:
     if line[0].isnumeric():
         tokens = line.split("\t")
         """
