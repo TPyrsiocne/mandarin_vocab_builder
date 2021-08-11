@@ -5,7 +5,6 @@ from graph_builder.models import Word, Character, Char_Deff
 
 def index(request):
     context = {"characters" : Character.objects.all()}
-
     return render(request, "graph_builder/index.html", context)
 
 def graph_build(request, char):
@@ -18,9 +17,7 @@ def graph_build(request, char):
     this_char = this_char.first()
 
 
-    this_char_deff = Char_Deff.objects.filter(character__symbol = char)
-    if this_char_deff.count()>1:
-        print("WARNING: " + this_char_deff.first().character.symbol + "has multiple entries in characters table")
+    this_char_deff = Char_Deff.objects.filter(character = this_char)
     this_char_deff = this_char_deff.first()
 
     """
