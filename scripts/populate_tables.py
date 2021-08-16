@@ -38,9 +38,13 @@ for char in Character.objects.all():
 #clear tabels of words
 Word.objects.all().delete()
 #import and popluate
-
+"""
+only imports words with characters in character table. 
+if characters appear multiple times in character table, uses only one instance in table.
+which instance might be sensitive to order of entries in table. this could be fixed by sorting 
+the querysets char1 and char2 are defined to be.
+"""
 chars = Character.objects.all()
-
 for line in open(PATH_TO_WORDDICT, "r").readlines()[:20000]:
     if line[0].isnumeric():
         tokens = line.split("\t")
@@ -58,5 +62,8 @@ for line in open(PATH_TO_WORDDICT, "r").readlines()[:20000]:
         char2 = chars.filter(symbol=tokens[1][1])
 
         if char1.count()*char2.count() > 0:
-            Word(first_char = char1.first(), second_char = char2.first(), rank=int(tokens[0])).save()
+            Word(first_char = char1.first(),
+                 second_char = char2.first(),
+                 rank=int(tokens[0])
+                 ).save()
 
