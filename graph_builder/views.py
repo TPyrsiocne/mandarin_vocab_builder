@@ -14,10 +14,13 @@ def graph_build(request, char):
     word_enders = this_char.points_to.filter(rank__range = (0, this_char.rank))
     word_starters = Character.objects.filter(points_to = this_char, rank__range = (0, this_char.rank))
     this_char_deff = this_char.definition
+    this_char_pronunciation = this_char.pronunciation
+
 
     context = {
         'this_char' : this_char,
         'this_char_deff' : this_char_deff,
+        'this_char_pronunciation' : this_char_pronunciation,
         'word_starters' : word_starters,
         'word_enders' : word_enders,
 
