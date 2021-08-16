@@ -1,11 +1,10 @@
-from graph_builder.models import Character, Word, Char_Deff, Word_Deff
+from graph_builder.models import Character, Word
 PATH_TO_CHARDICT = "/Users/tysonprice/mandarin_vocab_builder/char_dict.txt"
 PATH_TO_WORDDICT = "/Users/tysonprice/mandarin_vocab_builder/word_dict.txt"
 
 
-#clear tabels of characters and their deffinitions
+#clear tabels of characters
 Character.objects.all().delete()
-Char_Deff.objects.all().delete()
 #import and populate
 for line in open(PATH_TO_CHARDICT, "r").readlines()[:4000]:
     if line[0].isnumeric():
@@ -20,10 +19,11 @@ for line in open(PATH_TO_CHARDICT, "r").readlines()[:4000]:
         
         all tokens are strings, mutiple deffinitions and pronuncations are deliomited by '/'. 
         """
-        new_char = Character(symbol = tokens[1], rank = int(tokens[0]))
-        new_char_deff = Char_Deff(character = new_char, definition= tokens[5], pronunciation= tokens[4], ordinal = 1)
-        new_char.save()
-        new_char_deff.save()
+        Character(symbol = tokens[1],
+                  rank = int(tokens[0]),
+                  definition= tokens[5],
+                  pronunciation= tokens[4]).save()
+
 
 """
 #check for duplicates : this code is inefficient and dobule/triple/etc. prints; can be improved
@@ -35,10 +35,12 @@ for char in Character.objects.all():
 
 
 
-#clear tabels of words and their deffinitions
+#clear tabels of words
 Word.objects.all().delete()
-Word_Deff.objects.all().delete()
 #import and popluate
+
+chars = Character.objects.all()
+
 for line in open(PATH_TO_WORDDICT, "r").readlines()[:20000]:
     if line[0].isnumeric():
         tokens = line.split("\t")
@@ -51,6 +53,10 @@ for line in open(PATH_TO_WORDDICT, "r").readlines()[:20000]:
 
         all tokens are strings. 
         """
-        new_word = Word(symbols=tokens[1], rank=int(tokens[0]))
-        new_word.save()
+
+        char1 = chars.filter(symbol = tokens[1][0])
+        char2 = chars.filter(symbol=tokens[1][1])
+
+        if char1.count()*char2.count() > 0:
+            Word(first_char = char1.first(), second_char = char2.first(), rank=int(tokens[0])).save()
 

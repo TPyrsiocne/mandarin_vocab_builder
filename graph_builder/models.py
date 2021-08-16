@@ -2,51 +2,21 @@ from django.db import models
 
 
 class Character(models.Model):
+    points_to = models.ManyToManyField("self", symmetrical=False, through='Word')
     symbol = models.CharField(max_length = 1)
     rank = models.IntegerField(default = 0)
-
+    definition = models.CharField(max_length = 1000)
+    pronunciation = models.CharField(max_length = 40)
     def __str__(self):
         return self.symbol
 
 
-"""
-Look into the idea of a get_next_ordinal method? 
-(coudl apply to Word_Deff too)
-
-What about having the *_Deff objects be 
-extensions of a single class?
-"""
-
-
-
-
-
-class Char_Deff(models.Model):
-    character = models.ForeignKey(Character, on_delete = models.CASCADE)
-    definition = models.CharField(max_length = 1000)
-    pronunciation = models.CharField(max_length = 40)
-    #ordinal ranks deffintions from first to last
-    ordinal = models.IntegerField(default = 0)
-
-
-    def __str__(self):
-        return self.definition[:40] + "..."
-
 
 class Word(models.Model):
-    symbols = models.CharField(max_length=3)
+    first_char = models.ForeignKey(Character, related_name = 'is_first_char',on_delete=models.CASCADE)
+    second_char = models.ForeignKey(Character, related_name='is_second_char', on_delete=models.CASCADE)
     rank = models.IntegerField(default = 0)
-
-    def __str__(self):
-        return self.symbols
-
-
-class Word_Deff(models.Model):
-    word = models.ForeignKey(Word, on_delete = models.CASCADE)
     definition = models.CharField(max_length = 1000)
     pronunciation = models.CharField(max_length = 40)
-    # ordinal ranks deffintions from first to last
-    ordinal = models.IntegerField(default = 0)
-
     def __str__(self):
-        return self.definition[:40] + "..."
+        return self.first_char.symbol + self.second_char.symbol
