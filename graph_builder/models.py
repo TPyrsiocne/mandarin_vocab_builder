@@ -11,7 +11,6 @@ class Character(models.Model):
         return self.symbol
 
 
-
 class Word(models.Model):
     first_char = models.ForeignKey(Character, related_name = 'is_first_char',on_delete=models.CASCADE)
     second_char = models.ForeignKey(Character, related_name='is_second_char', on_delete=models.CASCADE)

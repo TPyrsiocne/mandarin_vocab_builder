@@ -2,6 +2,30 @@ import random
 from django.http import HttpResponse
 from django.shortcuts import render
 from graph_builder.models import Word, Character
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+
+
+
+def dashboard(request):
+    return render(request, "graph_builder/dashboard.html")
+
+def register(request):
+    if request.method == "GET":
+        return render(request, 'graph_builder/register.html', {'form' : UserCreationForm})
+    elif request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect(reverse('dashboard'))
+        else:
+            return render(request, 'graph_builder/invalid_registration.html')
+
+
+
+
+
 
 
 def index(request):
@@ -13,6 +37,7 @@ def graph_build(request, char):
     this_char = Character.objects.filter(symbol = char).first()
     word_enders = this_char.points_to.filter(rank__range = (0, this_char.rank))
     word_starters = Character.objects.filter(points_to = this_char, rank__range = (0, this_char.rank))
+    #what is Django doing with this command^
     this_char_deff = this_char.definition
     this_char_pronunciation = this_char.pronunciation
 
