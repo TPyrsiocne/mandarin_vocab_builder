@@ -1,14 +1,15 @@
 import random
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from graph_builder.models import Word, Character
 from django.contrib.auth import login
+from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
-
 
 
 def dashboard(request):
     return render(request, "graph_builder/dashboard.html")
+
 
 def register(request):
     if request.method == "GET":
@@ -23,11 +24,6 @@ def register(request):
             return render(request, 'graph_builder/invalid_registration.html')
 
 
-
-
-
-
-
 def index(request):
     context = {"characters" : Character.objects.all()}
     return render(request, "graph_builder/index.html", context)
@@ -40,7 +36,6 @@ def graph_build(request, char):
     #what is Django doing with this command^
     this_char_deff = this_char.definition
     this_char_pronunciation = this_char.pronunciation
-
 
     context = {
         'this_char' : this_char,
@@ -67,3 +62,21 @@ another idea would be to have defintions be mosueover text or seomthing
 def graph_build_from_rank(request, char_rank):
     char = Character.objects.get(rank = char_rank).symbol
     return graph_build(request = request, char = char)
+
+def toggle(request, char_tag):
+    current_user = request.user
+
+    if char_tag.isdecimal():
+        char_to_toggle = Character.objects.get(rank=int(char_tag))
+    else:
+        char_to_toggle = Character.objects.get(symbol=char_tag)
+
+    if current_user.is_authenticated:
+        if current_user in char_to_toggle.known_by.all():
+            char_to_toggle.known_by.remove(current_user)
+        else:
+            char_to_toggle.known_by.add(current_user)
+    else:
+        return redirect("/mandarin-graph/dashboard/")
+
+    return redirect("/mandarin-graph/" + char_tag +"/")

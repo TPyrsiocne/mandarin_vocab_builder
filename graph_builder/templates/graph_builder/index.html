@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <style>
-    a { text-decoration: none; }
     html * {font-family: Helvetica;}
     </style>
     <meta charset="UTF-8">
@@ -10,10 +9,14 @@
 </head>
 
 <body>
+<a href="{% url 'dashboard' %}">&lt Back to dashboard</a><br><br>
 Characters desplayed in blocks of 100 ordered by rank<br><br>
     1 - 100 <br>
     {% for char in characters %}
-    <a href = "/mandarin-graph/{{char.symbol}}/"> {{char.symbol}}</a>
+
+       <a style="text-decoration: none;color:{% if user in char.known_by.all %}#DCDCDC;{% else %}blue; {% endif %}" href = "/mandarin-graph/{{char.symbol}}/"> {{char.symbol}}</a>
+
+
     {%if char.rank|divisibleby:10 %}<br>{% endif %}
     {%if char.rank|divisibleby:100 %}<br>{{char.rank|add:1}} - {{char.rank|add:100}}<br>{% endif %}
     {% endfor %}
