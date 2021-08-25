@@ -67,9 +67,9 @@ def toggle(request, char_tag):
     current_user = request.user
 
     if char_tag.isdecimal():
-        char_to_toggle = Character.objects.get(rank=int(char_tag))
+        char_to_toggle = Character.objects.filter(rank=int(char_tag)).first()
     else:
-        char_to_toggle = Character.objects.get(symbol=char_tag)
+        char_to_toggle = Character.objects.filter(symbol=char_tag).first()
 
     if current_user.is_authenticated:
         if current_user in char_to_toggle.known_by.all():
@@ -77,6 +77,6 @@ def toggle(request, char_tag):
         else:
             char_to_toggle.known_by.add(current_user)
     else:
-        return redirect("/mandarin-graph/dashboard/")
+        return redirect("/mandarin-graph/accounts/login/")
 
     return redirect("/mandarin-graph/" + char_tag +"/")
