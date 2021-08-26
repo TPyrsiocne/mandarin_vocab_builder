@@ -18,7 +18,12 @@
 
 
 
-<h1 style="color:{% if user in this_char.known_by.all %}#DCDCDC;{% else %}blue; {% endif %};font-size:50px;">{{this_char.symbol}}<sub><font size = "-2">{{this_char.rank}}</font></sub></h1>
+<h1>
+        <a  style="color:{% if user in this_char.known_by.all %}#DCDCDC;{% else %}blue; {% endif %};font-size:50px;"  href = "https://www.purpleculture.net/dictionary-details/?word={{this_char.symbol}}" target="_blank">
+            {{this_char.symbol}}<sub><font size = "-2">{{this_char.rank}}</font></sub></h1></a>
+
+
+
 <br>
 <br>
 {{this_char_pronunciation}}<br>
@@ -33,7 +38,7 @@
 LINKS TO CHAR<br>
 {% for ender in word_enders %}
 <a href = "https://www.purpleculture.net/dictionary-details/?word={{this_char.symbol}}{{ender.symbol}}" target="_blank">--></a>
-<a style = "color:{% if user in ender.known_by.all %}gray;{% else %}blue; {% endif %}" href = "/mandarin-graph/{{ender.symbol}}/">{{ender.symbol}} </a><sub>{{ender.rank}}</sub><br>
+<a style = "color:{% if user in ender.known_by.all %}gray;  {% else %}blue; {% endif %}" href = "/mandarin-graph/{{ender.symbol}}/">{{ender.symbol}} </a><sub>{{ender.rank}}</sub><br>
 {% endfor %}
 <br>
 <br>
