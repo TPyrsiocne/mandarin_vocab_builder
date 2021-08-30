@@ -1,5 +1,26 @@
 This app lets people study Mandarin Chinese vocabulary in a cohesive incremental way.
 
+
+The majority of mandarin words are composed of two characters. 
+
+Let C be the set of characters in use in standard Mandarin and W be the set of ordered character-tuples of which form words. The tuple (C, W) forms a directed graph. 
+
+Learning mandarin vocabulary can be thought of as starting with initially empty sets c and w of known characters and words respectively and slowly populating them. 
+
+This app assists the user in doing this by presenting characters to be added to c in order of usage frequency from most common to least common.  Each character, x, to be added to c is is presented together with all words, (x,i) and (j,x), where i and j are in cU{x}. The user  
+
+At the end of this process c==C and w==W
+
+
+
+
+
+
+
+
+
+
+
 ================
 ===BACKGROUND===
 ================
