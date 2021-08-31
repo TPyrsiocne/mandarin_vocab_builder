@@ -1,6 +1,7 @@
 from graph_builder.models import Character, Word
-PATH_TO_CHARDICT = "/Users/tysonprice/mandarin_vocab_builder/char_dict.txt"
-PATH_TO_WORDDICT = "/Users/tysonprice/mandarin_vocab_builder/word_dict.txt"
+
+PATH_TO_CHARDICT = "/Users/tysonprice/mandarin_vocab_builder/mandarin_project/dictionarys/char_dict.txt"
+PATH_TO_WORDDICT = "/Users/tysonprice/mandarin_vocab_builder/mandarin_project/dictionarys/word_dict.txt"
 
 
 #clear tabels of characters
