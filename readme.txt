@@ -1,20 +1,34 @@
 This app lets people study Mandarin Chinese vocabulary in a cohesive incremental way.
 
 
-The majority of mandarin words are composed of two characters. 
+The app lists characters in order of their usage frequency. Each character links to a page displaying the character's definition and pronunciation as well as all combinations of the character with other characters of equal or higher usage frequency which form words. The image of the character links to a public dictionary of Mandarin for more information. The listed words also link to their corresponding pages with this dictionary site. 
 
-Let C be the set of characters in use in standard Mandarin and W be the set of ordered character-tuples of which form words. The tuple (C, W) forms a directed graph. 
+The user is intended build their knowledge of words and characters by starting from the beginning of the list and learning characters and words in order. This way users will learn the most commonly used characters first and knowledge of new characters and new words will always be anchoring to previously known characters. 
 
-Learning mandarin vocabulary can be thought of as starting with initially empty sets c and w of known characters and words respectively and slowly populating them. 
-
-This app assists the user in doing this by presenting characters to be added to c in order of usage frequency from most common to least common.  Each character, x, to be added to c is is presented together with all words, (x,i) and (j,x), where i and j are in cU{x}. The user  
-
-At the end of this process c==C and w==W
+The app visually color codes which characters are known by the user to allow quick review. 
 
 
 
+==instilation==
+After pulling the project folders run the following commands in the mandarin_vocab_builder folder to set up project
 
 
+
+
+
+===technical description===
+Characters can be viewed as nodes in a directed graph. Edges connect pairs of characters which form  a word and point from the first character of the word to the second.
+
+This structure is implemented with the Character and Word models. Character has a nonsymmetrical many-to-many relationship to itself through Word. 
+
+Instances of Character contain fields for the standard symbol reperesenting the character, an integer representing the usage frequency rank, the definition of the character, and the pin1yin1 pronunciation of the character. 
+
+Instances of Word contain fields for the usage frequency rank of the word, the definition of the word and its pin1yin1 pronunciation. 
+
+This app also keeps needs track of which characters a user reports to know. This is implemented as a many-to-many relationship between Character and the Django User model.  
+
+<some character>.known_by.all() is the set of users who know <some character>.
+<some user>.character_set.all() is the set of characters known by <some user>
 
 
 
