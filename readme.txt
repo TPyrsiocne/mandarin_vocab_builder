@@ -24,19 +24,21 @@ python -m pip install django
 pypython manage.py makemigrations graph_builder
 python manage.py migrate
 
-*populate tables. This builds the character and Word dictionaries and may take a minute or two. *
+*populate tables. This builds the character and Word dictionaries and may take a minute or two.*
 python manage.py shell < scripts/populate_tables.py 
 
 
 *start server*
 python manage.py runserver
 
-//== using app == 
-
+== using app == 
 *surf to localhost:8000/mandarin-graph/dashboard/*
 *click "Login"*
 *click "Register" to make a user account and follow directions. Once the user account is created the site will take you back to the dashboard page*
 *click "Character Index Page >". You may click on characters to see their pages and set them as known or unknown within the context of the just-created user account*
+*each character's page despairs a large image of the character. With Pin1yin1 pronunciation and definition under it. 
+
+T
 
 
 
