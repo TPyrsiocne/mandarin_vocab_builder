@@ -1,13 +1,17 @@
 from graph_builder.models import Character, Word
 
-PATH_TO_CHARDICT = "/Users/tysonprice/mandarin_vocab_builder/mandarin_project/dictionarys/char_dict.txt"
-PATH_TO_WORDDICT = "/Users/tysonprice/mandarin_vocab_builder/mandarin_project/dictionarys/word_dict.txt"
+PATH_TO_CHARDICT = "dictionarys/char_dict.txt"
+PATH_TO_WORDDICT = "dictionarys/word_dict.txt"
 
 
 #clear tabels of characters
 Character.objects.all().delete()
 #import and populate
-for line in open(PATH_TO_CHARDICT, "r").readlines()[:4000]:
+print("Building Character Table:")
+i=0
+char_max = 4000
+
+for line in open(PATH_TO_CHARDICT, "r").readlines()[:char_max]:
     if line[0].isnumeric():
         tokens = line.split("\t")
         """
@@ -20,11 +24,14 @@ for line in open(PATH_TO_CHARDICT, "r").readlines()[:4000]:
         
         all tokens are strings, mutiple deffinitions and pronuncations are deliomited by '/'. 
         """
-        Character(symbol = tokens[1],
-                  rank = int(tokens[0]),
-                  definition= tokens[5],
-                  pronunciation= tokens[4]).save()
-
+        Character(symbol=tokens[1],
+                  rank=int(tokens[0]),
+                  definition=tokens[5],
+                  pronunciation=tokens[4]).save()
+        if i % 1000 == 0:
+            print(str(int(100.*i/char_max)) + "% ... ")
+        i = i+1
+print("100% ... \n")
 
 """
 #check for duplicates : this code is inefficient and dobule/triple/etc. prints; can be improved
@@ -45,8 +52,11 @@ if characters appear multiple times in character table, uses only one instance i
 which instance might be sensitive to order of entries in table. this could be fixed by sorting 
 the querysets char1 and char2 are defined to be.
 """
+print("Building Word Table:")
+i = 0
+word_max = 20000
 chars = Character.objects.all()
-for line in open(PATH_TO_WORDDICT, "r").readlines()[:20000]:
+for line in open(PATH_TO_WORDDICT, "r").readlines()[:word_max]:
     if line[0].isnumeric():
         tokens = line.split("\t")
         """
@@ -68,3 +78,7 @@ for line in open(PATH_TO_WORDDICT, "r").readlines()[:20000]:
                  rank=int(tokens[0])
                  ).save()
 
+            if i % 1000 == 0:
+                print(str(int(100.*i/word_max))+"% ...")
+            i = i + 1
+print("100% ... \n")

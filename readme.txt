@@ -1,3 +1,4 @@
+
 This app lets people study Mandarin Chinese vocabulary in a cohesive incremental way.
 
 
@@ -9,8 +10,33 @@ The app visually color codes which characters are known by the user to allow qui
 
 
 
-==instilation==
-After pulling the project folders run the following commands in the mandarin_vocab_builder folder to set up project
+==installation==
+After pulling the project folders cd to the mandarin_vocab_builder folder and run the following commands
+
+*set up and activate venv*
+python3 -m venv testenv
+source testenv/bin/activate
+
+*install django*
+python -m pip install django
+
+*set up database*
+pypython manage.py makemigrations graph_builder
+python manage.py migrate
+
+*populate tables. This builds the character and Word dictionaries and may take a minute or two. *
+python manage.py shell < scripts/populate_tables.py 
+
+
+*start server*
+python manage.py runserver
+
+//== using app == 
+
+*surf to localhost:8000/mandarin-graph/dashboard/*
+*click "Login"*
+*click "Register" to make a user account and follow directions. Once the user account is created the site will take you back to the dashboard page*
+*click "Character Index Page >". You may click on characters to see their pages and set them as known or unknown within the context of the just-created user account*
 
 
 
@@ -21,11 +47,11 @@ Characters can be viewed as nodes in a directed graph. Edges connect pairs of ch
 
 This structure is implemented with the Character and Word models. Character has a nonsymmetrical many-to-many relationship to itself through Word. 
 
-Instances of Character contain fields for the standard symbol reperesenting the character, an integer representing the usage frequency rank, the definition of the character, and the pin1yin1 pronunciation of the character. 
+Character contains fields for the standard symbol reperesenting a character, an integer representing the usage frequency rank, the definition of the character, and the pin1yin1 pronunciation of the character. 
 
-Instances of Word contain fields for the usage frequency rank of the word, the definition of the word and its pin1yin1 pronunciation. 
+Word contains fields for the usage frequency rank of a word, the definition of the word and its pin1yin1 pronunciation. 
 
-This app also keeps needs track of which characters a user reports to know. This is implemented as a many-to-many relationship between Character and the Django User model.  
+This app also needs to keep track of which characters a user reports to know. This is implemented as a many-to-many relationship between Character and the Django User model.  
 
 <some character>.known_by.all() is the set of users who know <some character>.
 <some user>.character_set.all() is the set of characters known by <some user>
