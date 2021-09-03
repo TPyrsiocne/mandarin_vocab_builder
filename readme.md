@@ -1,11 +1,13 @@
 ## Description
-Most Mandarin words are two characters long. Because of this characters can be viewed as nodes in a directed graph with words defining the edges. Learning vocabulary can then be understood as exploring this directed graph. One learning strategy is to start at the most frequently used character and add new characters to ones vocabulary in order of frequency. Each time a new character is learned the edges connecting it to the previously known subgraph are also learned. 
+Most Mandarin words are two characters long. Because of this characters can be viewed as nodes in a directed graph with words defining the edges. Learning vocabulary can then be understood as exploring this directed graph. One learning strategy is to start at the most frequently used character and add new characters to your vocabulary in order of frequency. Each time a new character is learned the words connecting it to the previously known subgraph are also learned. 
 
-This approach to vocabulary building is explicitly followed by this app. Each character's page displaying a list of all words connecting the character to the previously learned characters which is assumed to consist of the set of characters with usage frequency less than or equal to the character in question. The character's definition and pronunciation are also displayed.
+This approach to vocabulary building is explicitly followed by this app. Each character's page displays a list of all words connecting the character to the set of previously learned characters which is assumed to consist of the set of characters with usage frequency less than or equal to the character in question. The character's definition and pronunciation are also displayed.
 
-Internally,  this information is handled by the Character and Word models. Character has a non-symmetrical many-to-many relationship to itself through Word and contains additional fields to store a character's standard symbol, the character's usage frequency rank, the definition of the character, and its pin1yin1 pronunciation. Word contains fields for the usage frequency rank of a word, the definition of the word, and its pin1yin1 pronunciation.
+## Internals 
 
-The app also tracks which characters a user reports to know independent of the rest of the structure. This is implemented as a many-to-many relationship between Character and the Django User model and is displayed to the user through color coding of known and unknown characters throughout the app.
+The list of characters, the relationships between them defined by words, and additional information such as definitions and pronunciation for characters and words, are handled by the Character and Word models. Character has a non-symmetrical many-to-many relationship to itself through Word and contains additional fields to store a character's standard symbol, the character's usage frequency rank, the definition of the character, and its pin1yin1 pronunciation. Word contains fields for the usage frequency rank of a word, the definition of the word, and its pin1yin1 pronunciation.
+
+The app also tracks which characters a user reports to have successfully learned. This is implemented as a many-to-many relationship between Character and the Django User model and is displayed to the user through color coding of known and unknown characters throughout the app.
 
 ```sh
 <some character>.known_by.all()
