@@ -69,7 +69,7 @@ for line in open(PATH_TO_WORDDICT, "r").readlines()[:word_max]:
         all tokens are strings. 
         """
 
-        char1 = chars.filter(symbol = tokens[1][0])
+        char1 = chars.filter(symbol=tokens[1][0])
         char2 = chars.filter(symbol=tokens[1][1])
 
         if char1.count()*char2.count() > 0:

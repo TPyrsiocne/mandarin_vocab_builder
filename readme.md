@@ -1,22 +1,91 @@
 ## Description
-Most Mandarin words are two characters long. Because of this characters can be viewed as nodes in a directed graph with words defining the edges. Learning vocabulary can then be understood as exploring this directed graph. One learning strategy is to start at the most frequently used character and add new characters to your vocabulary in order of frequency. Each time a new character is learned the words connecting it to the previously known subgraph are also learned. 
 
-This approach to vocabulary building is explicitly followed by this app. Each character's page displays a list of all words connecting the character to the set of previously learned characters which is assumed to consist of the set of characters with usage frequency less than or equal to the character in question. The character's definition and pronunciation are also displayed.
+
+
+Learning Mandarin can be a daunting task. There are about 4000 characters and at least 2000 important ones. There are tens of thousands of relevant words, typically built out of two characters. The meanings of words are only heuristically related to the characters which comprise them and the meanings of the characters themselves can be complex and vague. Because learning new characters is time consuming new vocabulary that involves many new characters is slow to learn.  Balancing these learning elements is a challenge. However a judicious choice of what order to learn characters and words in can greatly smooth the learning process. 
+
+One approach to this is to learn characters one by one in order of usage frequency and concurrently learn all of the words possible using the characters you know. This approach has two main advantages.
+
+1) More common characters are learned first. The words these characters form are often more commonly used too.
+2) New vocabulary only ever involves at most one new character - usually in combination with a known character.
+
+
+This app organizes the learning process in this way. Characters are listed on an index page in order from most common to least common. Each character links to a page which displays the character's pronunciation and definition. This page also displays the set of words which can be formed using the charter and ones already learned. An additional feature is that the user can mark characters as known or unknown to keep track of progress. This is then indicated by the color the character appears in the UI in all places in the app for quick reference. 
+
+
+
 
 ## Internals 
 
-The list of characters, the relationships between them defined by words, and additional information such as definitions and pronunciation for characters and words, are handled by the Character and Word models. Character has a non-symmetrical many-to-many relationship to itself through Word and contains additional fields to store a character's standard symbol, the character's usage frequency rank, the definition of the character, and its pin1yin1 pronunciation. Word contains fields for the usage frequency rank of a word, the definition of the word, and its pin1yin1 pronunciation.
+Since most mandarin words are two characters long, they can be thought of as edges in a directed graph with the characters being nodes. Each edge and node has associated information such as definition, pronunciation, and frequency rank (how commonly a character or word is typically used in Mandarin). 
 
-The app also tracks which characters a user reports to have successfully learned. This is implemented as a many-to-many relationship between Character and the Django User model and is displayed to the user through color coding of known and unknown characters throughout the app.
+This structure is implemented in the Character and Word models. The Character model has fields to store the character's standard symbol, frequency rank, definition, and pin1yin1 pronunciation. What character combinations form words is handled as a non-symmetrical many-to-many relationship from the character model to it's self through Word. The Word model also has additional fields for the word's frequency rank, definition and pin1yin1 pronunciation. The app tracks which characters a user reports to have successfully learned using a many-to-many relationship between the Character model and the Django User model.
 
+
+For example
+```
+ zhong1 = Character(symbol="中", rank=14, definition="center/middle", pronunciation="zhong1")
+ guo2 = Character(symbol="国", rank=20, definition="country/state/nation", pronunciation="guo2")
+ mei3 = Character(symbol="美", rank=151, definition="beautiful", pronunciation="mei3")
+
+ zhong1.save()
+ guo2.save()
+ mei3.save()
+```
+
+instantiates and save three instance of Character for 中, 国, and 美. You can now create words from these characters.
+
+```
+word1 = Word(first_char=zhong1, second_char=guo2, rank = 124, definition="China", pronunciation="zhong1guo2")
+word2 = Word(first_char=mei3, second_char=guo2, rank = 253, definition="the USA", pronunciation="mei3guo2")
+```
+
+Now you have defined the two words, 中国 and 美国.
+
+
+If you want the list of all characters which can from a word starting with 中, run
+```
+zhong1.points_to.all()
+```
+In this example this will return
+```
+<QuerySet [ <Character: 国>]>
+```
+
+If you want the list of all characters which form a valid word ending with a character, like 国, run
+
+```
+guo2.character_set.all()
+```
+This will return
+```
+<QuerySet [ <Character: 中>, <Character: 美>]>
+```
+since we have defined two words which end with 国. 
+
+It is possible to filter results based on fields in character using Django's built in APIs. For example 
+
+```
+guo2.character_set.filter(rank__range = (0, guo2.rank))
+```
+will only return
+```
+<QuerySet [ <Character: 中>]>
+```
+Since mei2's rank is outside the specified range.
+
+
+If there are users with established knowledge of characters and you want the QuerySet of Users who know a character, run
 ```sh
 <some character>.known_by.all()
 ```
-is the set of users who know a character and
+
+If you want the set of characters a particular user knows run
 ```sh
 <some user>.character_set.all() 
 ```
-is the set of characters known by a user.
+
+
 
 ## Installation
 After pulling the project folders cd into the mandarin_vocab_builder folder and run the following commands:
