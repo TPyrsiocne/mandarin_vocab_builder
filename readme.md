@@ -10,7 +10,7 @@ One approach to this is to learn characters one by one in order of usage frequen
 2) New vocabulary only ever involves at most one new character - usually in combination with a known character.
 
 
-This app organizes the learning process in this way. Characters are listed on an index page in order from most common to least common. Each character links to a page which displays the character's pronunciation and definition. This page also displays the set of words which can be formed using the charter and ones already learned. An additional feature is that the user can mark characters as known or unknown to keep track of progress. This is then indicated by the color the character appears in the UI in all places in the app for quick reference. 
+This app organizes learning in this way. Characters are listed on an index page in order from most common to least common. Each character links to a page which displays the character's pronunciation and definition. This page also displays the set of words which can be formed using the charter with ones already learned. The user can also mark characters as known or unknown to keep track of progress. This is then indicated by the color the character in the UI in all places in the app for quick reference. 
 
 
 
