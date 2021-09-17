@@ -19,7 +19,7 @@ This app organizes learning in this way. Characters are listed on an index page 
 
 Since most mandarin words are two characters long, they can be thought of as edges in a directed graph with the characters being nodes. Each edge and node has associated information such as definition, pronunciation, and frequency rank (how commonly a character or word is typically used in Mandarin). 
 
-This structure is implemented in the Character and Word models. The Character model has fields to store the character's standard symbol, frequency rank, definition, and pin1yin1 pronunciation. What character combinations form words is handled as a non-symmetrical many-to-many relationship from the character model to it's self through Word. The Word model also has additional fields for the word's frequency rank, definition and pin1yin1 pronunciation. The app tracks which characters a user reports to have successfully learned using a many-to-many relationship between the Character model and the Django User model.
+This structure is implemented with the Character and Word models. The Character model has fields to store the character's standard symbol, frequency rank, definition, and pin1yin1 pronunciation. What character combinations form words is handled as a non-symmetrical many-to-many relationship from the character model to it's self through Word. The Word model also has additional fields for the word's frequency rank, definition and pin1yin1 pronunciation. The app tracks which characters a user reports to have successfully learned using a many-to-many relationship between the Character model and the Django User model.
 
 
 For example
@@ -52,7 +52,7 @@ In this example this will return
 <QuerySet [ <Character: 国>]>
 ```
 
-If you want the list of all characters which form a valid word ending with a character, like 国, run
+If you want the list of all characters which form a valid word ending with a character - in this case 国 - run
 
 ```
 guo2.character_set.all()
