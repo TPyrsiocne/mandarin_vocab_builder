@@ -2,7 +2,7 @@
 
 
 
-Learning Mandarin can be a daunting task. There are about 4000 characters and at least 2000 important ones. There are tens of thousands of relevant words, typically built out of two characters. The meanings of words are only heuristically related to the characters which comprise them and the meanings of the characters themselves can be complex and vague. Because learning new characters is time consuming new vocabulary that involves many new characters is slow to learn.  Balancing these learning elements is a challenge. However a judicious choice of what order to learn characters and words in can greatly smooth the learning process. 
+Learning Mandarin can be a daunting task. There are about 4000 characters and at least 2000 important ones. There are tens of thousands of relevant words, typically built out of two characters. The meanings of words are only heuristically related to the characters which form them and the meanings of the characters themselves can be complex and nebulous. Because learning new characters is time consuming new vocabulary that involves many new characters is slow to learn.  Balancing these learning elements is a challenge. However a judicious choice of what order to learn characters and words in can greatly smooth the learning process. 
 
 One approach to this is to learn characters one by one in order of usage frequency and concurrently learn all of the words possible using the characters you know. This approach has two main advantages.
 
