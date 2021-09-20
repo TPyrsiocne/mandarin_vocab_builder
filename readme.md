@@ -37,8 +37,8 @@ For example
 instantiates and save three instance of the Character model for 中, 国, and 美. You can now create words from these characters.
 
 ```
-word1 = Word(first_char=char1, second_char=guo2, rank = 124, definition="China", pronunciation="zhong1guo2")
-word2 = Word(first_char=char2, second_char=guo2, rank = 253, definition="the USA", pronunciation="mei3guo2")
+word1 = Word(first_char=char1, second_char=char2, rank = 124, definition="China", pronunciation="zhong1guo2")
+word2 = Word(first_char=char2, second_char=char2, rank = 253, definition="the USA", pronunciation="mei3guo2")
 ```
 
 Now you have defined the two words, 中国 and 美国.
