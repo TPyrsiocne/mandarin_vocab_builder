@@ -17,6 +17,7 @@ This app organizes learning in this way. Characters are listed on an index page 
 
 
 ## Internals 
+![](zhong1_wen2.png "Nodes represent characters and edges represent words")
 
 Since most mandarin words are two characters long, they can be thought of as edges in a directed graph with the characters being nodes. Each edge and node has associated information such as definition, pronunciation, and frequency rank (how commonly a character or word is typically used in Mandarin). 
 
