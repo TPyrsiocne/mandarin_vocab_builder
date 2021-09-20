@@ -1,4 +1,4 @@
-![](learning_flow.png "Cartoon of Mandarin learning flow. Nodes represent characters and edges connect characters which form words. The salmon section of the graph represents the expanding set of words and characters known by a learner using this app.")
+![](learning_flow.png "Cartoon of this app's Mandarin learning flow. Nodes represent characters and edges connect characters which form words. The salmon section of the graph represents the expanding set of words and characters known by a learner.")
 ## Description
 
 
