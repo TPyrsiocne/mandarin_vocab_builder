@@ -1,17 +1,17 @@
-![](learning_flow.png "Cartoon of this app's Mandarin learning flow. Nodes represent characters and edges connect characters which form words. The salmon section of the graph represents the expanding set of words and characters known by a learner.")
+![](learning_flow.png "Cartoon of this app's Mandarin learning flow. Nodes represent characters and edges represent words. The salmon section of the graph represents the expanding set of words and characters known by a learner.")
 ## Learn Mandarin
 
 
 
-Learning Mandarin can be a daunting task. There are thousands characters to learn on top of the tens of thousands of words. Word are usually two characters long but the meanings of words are only heuristically related to their characters. The meanings of the characters themselves can also be complex and nebulous at first.  Balancing these learning elements is a challenge gut a judicious choice of the order to learn characters and words can greatly smooth the learning process. 
+Learning Mandarin can be a daunting task. There are thousands characters to learn on top of the tens of thousands of words. Word are usually two characters long but the meanings of words are only heuristically related to their characters. The meanings of the characters themselves can also be complex and nebulous at first.  Balancing these learning elements is a challenge but a judicious choice of the order to learn characters and words can greatly smooth the learning process. 
 
-One approach is to learn characters one by one in order of usage frequency and concurrently learn all of the words possible using the characters you know. This approach has two main advantages.
+One approach is to learn characters on-by-one in order of usage frequency and concurrently learn all words which are combinations of those characters. This approach has two main advantages.
 
 1) More common characters are learned first. The words these characters form are often more commonly used too.
 2) New vocabulary only ever involves at most one new character - usually in combination with a known character.
 
 
-This app organizes learning in this way. Characters are listed on an index page in order from most common to least common. Each character links to a page which displays the character's pronunciation and definition. This page also displays the set of words which can be formed using the charter with ones already learned. The user can also mark characters as known or unknown to keep track of progress. This is then indicated by the color the character in the UI in all places in the app for quick reference. 
+This app organizes learning in this way. Characters are listed on an index page in order from most common to least common. Each character links to a page which displays the character's pronunciation and definition. This page also displays the set of words which can be formed with the current character combined with ones already learned. The user can also mark characters as known or unknown to keep track of progress. This is then indicated by the color the character in the UI in all places in the app for quick reference. 
 
 
 
