@@ -6,7 +6,7 @@ Learning Mandarin can be a daunting task. There are thousands characters to lear
 
 
 ## The Main Idea
-![](7_char_graph.png "The graph in this picture involves the seven characters: 这, 里, 么, 那, 些, 样, and 一 together with 9 common words they form:
+![](7_char_graph.png "The graph of all Mandarin words contains thousands of characters and tens of thousands of edges. This small illustrative sub graph shows the seven characters 这, 里, 么, 那, 些, 样, and 一 with 9 common words they form:
 这些 - these
 这么 - in this way, like this
 这里 - here
@@ -15,7 +15,8 @@ Learning Mandarin can be a daunting task. There are thousands characters to lear
 那么 - in that way, like so
 那样 - that kind/sort
 一些 - some, a few
-一样 - same, like, equal to")
+一样 - same, like, equal to."
+)
 
 The set of characters and words in Mandarin can be thought of as a directed graph. Characters are the vertices and the pairs of characters which form words are edges. A learner of mandarin vocabulary is exploring this graph. 
 
