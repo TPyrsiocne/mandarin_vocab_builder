@@ -1,22 +1,19 @@
+
+
 ![](learning_flow.png "Cartoon of this app's Mandarin learning flow. Nodes represent characters and edges represent words. The salmon section of the graph represents the expanding set of words and characters known by a learner.")
 ## Learn Mandarin
-
-
-
 Learning Mandarin can be a daunting task. There are thousands characters to learn on top of the tens of thousands of words. Word are usually two characters long but the meanings of words are only heuristically related to their characters. Plus the meanings of the characters themselves can also be complex and nebulous at first.  A judicious choice of the order to learn characters turns out to greatly smooth the learning process. 
 
 
+## The Main Idea
 ![](7_char_graph.png "Nodes represent characters and edges represent words")
 
-## The Main Idea
 The set of characters and words in Mandarin can be thought of as a directed graph. Characters are the vertices and the pairs of characters which form words are edges. A learner of mandarin vocabulary is exploring this graph. 
 
 Some characters are words are more frequently used and more relevant to learn than others. The relative importance of characters and words can be thought of as a weighting of vertices and edges. Our task as the learner now becomes clear: build and expand the subgraph of known characters and edges prioritizing those with the highest weight. 
 
-
-
-
 ## The Approach
+
 One approach is to learn characters on-by-one in order of usage frequency and concurrently learn all words which are combinations of those characters. This approach has two main advantages.
 
 1) More common characters are learned first. The words these characters form are often more commonly used too.
@@ -29,7 +26,6 @@ This app organizes learning in this way. Characters are listed on an index page 
 
 
 ## Internals 
-![](zhong1_wen2.png "Nodes represent characters and edges represent words")
 
 Each edge and node has associated information such as definition, pronunciation, and frequency rank (how commonly a character or word is typically used in Mandarin). 
 
