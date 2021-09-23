@@ -8,7 +8,7 @@ Learning Mandarin can be a daunting task. There are thousands characters to lear
 
 ![](7_char_graph.png "Nodes represent characters and edges represent words")
 
-##The Main Idea
+## The Main Idea
 The set of characters and words in Mandarin can be thought of as a directed graph. Characters are the vertices and the pairs of characters which form words are edges. A learner of mandarin vocabulary is exploring this graph. 
 
 Some characters are words are more frequently used and more relevant to learn than others. The relative importance of characters and words can be thought of as a weighting of vertices and edges. Our task as the learner now becomes clear: build and expand the subgraph of known characters and edges prioritizing those with the highest weight. 
@@ -16,7 +16,7 @@ Some characters are words are more frequently used and more relevant to learn th
 
 
 
-##Our Aproach
+## The Approach
 One approach is to learn characters on-by-one in order of usage frequency and concurrently learn all words which are combinations of those characters. This approach has two main advantages.
 
 1) More common characters are learned first. The words these characters form are often more commonly used too.
