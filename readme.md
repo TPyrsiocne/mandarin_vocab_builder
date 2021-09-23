@@ -6,7 +6,16 @@ Learning Mandarin can be a daunting task. There are thousands characters to lear
 
 
 ## The Main Idea
-![](7_char_graph.png "Nodes represent characters and edges represent words")
+![](7_char_graph.png "The graph in this picture involves the seven characters: 这, 里, 么, 那, 些, 样, and 一 together with 9 common words they form:\n 
+这些 - these\n
+这么 - this way, like this\n 
+这里 - here\n 
+这样 - like this, this kind\n
+那么 - in that way, like so\n
+那样 - that kind/sort\n
+那些 - those\n
+一些 - some, a few\n
+一样 - same, like, equal to\n")
 
 The set of characters and words in Mandarin can be thought of as a directed graph. Characters are the vertices and the pairs of characters which form words are edges. A learner of mandarin vocabulary is exploring this graph. 
 
