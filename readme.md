@@ -7,7 +7,6 @@ Learning Mandarin can be a daunting task. There are thousands characters to lear
 
 ## The Main Idea
 ![](7_char_graph.png "The graph in this picture involves the seven characters: 这, 里, 么, 那, 些, 样, and 一 together with 9 common words they form:
-
 这些 - these
 这么 - in this way, like this
 这里 - here
