@@ -3,8 +3,20 @@
 
 
 
-Learning Mandarin can be a daunting task. There are thousands characters to learn on top of the tens of thousands of words. Word are usually two characters long but the meanings of words are only heuristically related to their characters. The meanings of the characters themselves can also be complex and nebulous at first.  Balancing these learning elements is a challenge but a judicious choice of the order to learn characters and words can greatly smooth the learning process. 
+Learning Mandarin can be a daunting task. There are thousands characters to learn on top of the tens of thousands of words. Word are usually two characters long but the meanings of words are only heuristically related to their characters. Plus the meanings of the characters themselves can also be complex and nebulous at first.  A judicious choice of the order to learn characters turns out to greatly smooth the learning process. 
 
+
+![](7_char_graph.png "Nodes represent characters and edges represent words")
+
+##The Main Idea
+The set of characters and words in Mandarin can be thought of as a directed graph. Characters are the vertices and the pairs of characters which form words are edges. A learner of mandarin vocabulary is exploring this graph. 
+
+Some characters are words are more frequently used and more relevant to learn than others. The relative importance of characters and words can be thought of as a weighting of vertices and edges. Our task as the learner now becomes clear: build and expand the subgraph of known characters and edges prioritizing those with the highest weight. 
+
+
+
+
+##Our Aproach
 One approach is to learn characters on-by-one in order of usage frequency and concurrently learn all words which are combinations of those characters. This approach has two main advantages.
 
 1) More common characters are learned first. The words these characters form are often more commonly used too.
@@ -19,7 +31,7 @@ This app organizes learning in this way. Characters are listed on an index page 
 ## Internals 
 ![](zhong1_wen2.png "Nodes represent characters and edges represent words")
 
-Since most mandarin words are two characters long, they can be thought of as edges in a directed graph with the characters being nodes. Each edge and node has associated information such as definition, pronunciation, and frequency rank (how commonly a character or word is typically used in Mandarin). 
+Each edge and node has associated information such as definition, pronunciation, and frequency rank (how commonly a character or word is typically used in Mandarin). 
 
 This structure is implemented with the Character and Word models. The Character model has fields to store the character's standard symbol, frequency rank, definition, and pin1yin1 pronunciation. What character combinations form words is handled as a non-symmetrical many-to-many relationship from the character model to it's self through the Word model. The Word model also has additional fields for the word's frequency rank, definition and pin1yin1 pronunciation. The app tracks which characters a user reports to have successfully learned using a many-to-many relationship between the Character model and the Django User model.
 
